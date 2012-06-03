@@ -1,0 +1,158 @@
+@import "twitter/bootstrap/bootstrap";
+body { padding-top: 60px; }
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: asset-path('fontawesome-webfont.eot');
+@fontAwesomeWoffPath: asset-path('fontawesome-webfont.woff');
+@fontAwesomeTtfPath: asset-path('fontawesome-webfont.ttf');
+@fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
+@fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
+
+// Font Awesome
+@import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+
+// SCHEME: http://colorschemedesigner.com/#1J324w0w0w0w0
+
+.btn-info.button{
+   color: #FFFFFF;
+   border-radius: 7px;
+   padding: 3px;
+   text-align: left;
+}
+
+.tree-0{
+   text-align: left;
+}
+
+.tree-1{
+   text-align: right;
+}
+
+.tree--1{
+   text-align: center;
+}
+
+.btn-group{
+   padding-right: 0px;
+   padding-left: 0px;
+}
+
+.node-button{
+   .btn-info;
+   color: #FFFFFF;
+   padding: 3px;
+   border: 1px outset buttonface;
+   text-align: left;
+   text-wrap: normal;
+}
+
+.function-button{
+   .node-button;
+   border-radius: 3px;
+   text-align: center;
+   #gradient > .vertical(#08C, #AFAFAF);
+}
+
+.node-0{ // left
+   //#gradient > .vertical(#E768AB, #E73A95);
+}
+
+.node-1{ // right
+   #gradient > .vertical(#E768AB, #E73A95);
+}
+
+.node--1{ // events
+   #gradient > .vertical(#CCCCCC, #ADADAD);
+   width: 270px;
+   text-align: center;
+}
+
+.node-left{
+   border-top-left-radius: 4px;
+   border-bottom-left-radius: 4px;
+}
+
+.node-normal{
+   border-radius: 5px;
+
+}
+
+.caret {
+   vertical-align: middle;
+}
+.span-center{
+   background-color: whiteSmoke;
+   padding-top: 19px;
+   padding-bottom: 19px;
+   padding-right: 0px;
+   padding-left: 0px;
+   width: 300px;
+   -webkit-border-radius: 4px;
+   border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.span-center-inner{
+   width: 270px;
+   padding-right: 15px;
+   padding-left: 15px;
+   float: none;
+   margin-left: 0px;
+}
+
+.span-center-event{
+   padding-right: 0px;
+   padding-left: 0px;
+   margin-left: 0px;
+   margin-right: 0px;
+   text-align: center;
+   width: 300px;
+}
+
+.span-center-current-event{
+   .span-center-event;
+   width: 270px;
+}
+
+a.fill-div {
+   display: block;
+   height: 100%;
+   width: 100%;
+   text-decoration: none;
+}
+
+.span-center-current{
+   background-color: #E6E6E6;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   .span-center-inner
+}
+
+.form-node{
+   .input-xlarge;
+   .form-search;
+   margin-left: 15px;
+   margin-right: 15px;
+}
+
+.form-node-edit{
+   .input-xlarge;
+   .form-search;
+}
