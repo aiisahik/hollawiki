@@ -22,89 +22,6 @@ class NodesController < ApplicationController
   end
 
 
-  #load entire tree
-  def tree
-
-    @current_node = Node.find(params[:id])
-
-    @scenario = Scenario.find(@current_node.scenario_id)
-    @speakers = Speaker.where("scenario_id = ?", @current_node.scenario_id)
-
-    # find all previous nodes
-    @tree = []
-    @prev_id = @current_node.previous_node_id
-    @debug = @current_node.speaker
-    while @prev_id > 0
-      @node_branch = Node.find(@prev_id)
-
-      @tree.push(@node_branch)
-      @prev_id = @node_branch.previous_node_id
-    end
-
-    @tree = @tree.reverse
-
-
-    # NEXT NODES
-
-    #@next_nodes = Node.where("previous_node_id = ? AND scenario_id = ?", @current_node.id, params[:scenario_id])
-    #@next_nodes_0 = Node.joins(:speaker).where(:speakers => {:speaker_type => 0}).where("previous_node_id = ? AND nodes.scenario_id = ?", @current_node.id, params[:scenario_id])
-    # Left
-    @next_nodes_0 = Node.joins(:speaker).where("previous_node_id = ? AND nodes.scenario_id = ? AND speakers.speaker_type = ?", @current_node.id, params[:scenario_id],0)
-    # Right
-    @next_nodes_1 = Node.joins(:speaker).where("previous_node_id = ? AND nodes.scenario_id = ? AND speakers.speaker_type = ?", @current_node.id, params[:scenario_id],1)
-    # Events
-    @next_nodes_events = Node.joins(:speaker).where("previous_node_id = ? AND nodes.scenario_id = ? AND speakers.speaker_type = ?", @current_node.id, params[:scenario_id],-1)
-
-
-    # OUTPUT
-
-    respond_to do |format|
-      format.json { render json: {
-          :scenario => @scenario,
-          :speakers => @speakers,
-          :current_node => @current_node,
-          :node_tree => @tree,
-          :next_nodes_0 => @next_nodes_0,
-          :next_nodes_1 => @next_nodes_1,
-          :next_nodes_events => @next_nodes_events,
-          :debug => @debug}}
-    end
-  end
-
-  def initial
-
-    @scenario = Scenario.find(params[:scenario_id])
-    @start_node = Node.where("scenario_id = ? AND previous_node_id = 0", params[:scenario_id])
-
-    # @next_nodes = Node.where("scenario_id = ? AND previous_node_id = ?", params[:scenario_id],@start_node.first.id)
-
-    @next_nodes_0 = Node.joins(:speaker).where("previous_node_id = ? AND nodes.scenario_id = ? AND speakers.speaker_type = ?", @start_node.first.id,params[:scenario_id],0)
-    # Right
-    @next_nodes_1 = Node.joins(:speaker).where("previous_node_id = ? AND nodes.scenario_id = ? AND speakers.speaker_type = ?", @start_node.first.id,params[:scenario_id],1)
-    # Events
-    @next_nodes_events = Node.joins(:speaker).where("previous_node_id = ? AND nodes.scenario_id = ? AND speakers.speaker_type = ?", @start_node.first.id,params[:scenario_id],-1)
-
-    #@next_nodes_1 = Node.where("scenario_id = ? AND previous_node_id = ? AND speaker.speaker_type = ?", params[:scenario_id],@start_node.first.id,1)
-    #@next_nodes_2 = Node.where("scenario_id = ? AND previous_node_id = ? AND speaker.speaker_type = ?", params[:scenario_id],@start_node.first.id,2)
-    @speakers = Speaker.where("scenario_id = ?", params[:scenario_id])
-
-
-    respond_to do |format|
-      format.json { render json: {
-
-          :scenario => @scenario,
-          :speakers => @speakers,
-          :start_node => @start_node.first,
-          #:next_nodes => @next_nodes,
-          :next_nodes_0 => @next_nodes_0,
-          :next_nodes_1 => @next_nodes_1,
-          :next_nodes_events => @next_nodes_events
-          }
-      }
-    end
-  end
-
-
   # GET /nodes/new
   # GET /nodes/new.json
   def new
@@ -125,7 +42,6 @@ class NodesController < ApplicationController
   # POST /nodes.json
   def create
     @node = Node.new(params[:node])
-
 
     respond_to do |format|
       if @node.save

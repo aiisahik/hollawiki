@@ -1,0 +1,59 @@
+
+<script src="assets/b.js"></script>
+
+<script type="text/template" id="scenarios-template">
+  <%% _.each(scenarios, function(scenario) { %>
+
+     <li id="scenario_item"><a href="#" id="<%%= scenario.id %>_scenario"><%%= scenario.name %></a></li>
+
+  <%% }); %>
+</script>
+
+<div class="row" id="bb_app">
+  <div class="span4">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Scenarios<br></li>
+      </ul>
+      <ul class="nav nav-list" id="scenarios_list">
+        </ul>
+      <ul class="nav nav-list">
+        <li class="nav-header" id="scenario_new"><%= link_to 'New Scenario', new_scenario_path %><br></li>
+        <li><input id="new-scenario" type="text" placeholder="What needs to be done?"></li>
+      </ul>
+    </div><!--/.well -->
+  </div><!--/span-->
+  <div class="span-center">
+    <div class="span-center-inner">
+      <div id="scenario_desc"></div>
+    </div>
+    <div id="start_node"></div>
+    <div class="span-center-inner">
+      <div id="scenario_speaker_header">
+        <table width="100%"><tr><td width="50%"><h4 id="label-speaker0"></h4></td><td width="50%" align="right"><h4 id="label-speaker1"></h4></td> </tr></table>
+      </div>
+    </div>
+
+    <div id="tree_nodes"></div>
+
+
+
+    <div id="next_nodes"></div>
+
+
+    <div id="input-node">
+      <textarea rows="3" id="node_new" class="form-node" placeholder="Suggest something to say..."></textarea>
+      <input type="radio" id="speaker_type_0" name="speaker_type" value="0" checked> You<br>
+      <input type="radio" id="speaker_type_1" name="speaker_type" value="1"> Girl<br>
+      <input type="radio" id="speaker_type_-1" name="speaker_type" value="-1"> Event<br>
+
+    </div>
+  </div>
+  <div class="span4"></div>
+</div>
+
+<div id="debug"></div>
+
+
+<!-- Templates -->
+

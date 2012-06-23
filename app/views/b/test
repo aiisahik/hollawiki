@@ -1,0 +1,7 @@
+<script type="text/template" id="scenarios-template">
+  <%% _.each(scenarios, function(scenario) { %>
+  <li><%%= scenario.name %></li>
+  <li id="scenario_item"><a href="#" id="<%%= scenario.id %>_scenario"><%%= scenario.name %></a></li>
+
+  <%% }); %>
+</script>

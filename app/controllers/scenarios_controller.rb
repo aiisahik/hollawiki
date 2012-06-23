@@ -6,20 +6,34 @@ class ScenariosController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @scenarios }
+      format.json { render json: {
+          :scenarios => @scenarios }
+      }
     end
   end
+
 
   # GET /scenarios/1
   # GET /scenarios/1.json
+
   def show
     @scenario = Scenario.find(params[:id])
 
+    @speakers = Speaker.where("scenario_id = ?", params[:id])
+    @start_node = Node.where("scenario_id = ? AND previous_node_id = 0", params[:id])
+
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @scenario }
+      format.json { render json: {
+
+          :scenario => @scenario,
+          :speakers => @speakers,
+          :start_node => @start_node.first
+
+        }
+      }
     end
   end
+
 
   # GET /scenarios/new
   # GET /scenarios/new.json

@@ -1,8 +1,11 @@
 Convomister::Application.routes.draw do
 
+  devise_for :users
+
   resources :speakers
 
-  root :to => 'access#login'
+  root :to => 'b#start'
+  #root :to => '/start.html'
 
   match 'admin', :to => 'access#menu'
   match 'attempt_login', :to => 'access#attempt_login'
@@ -13,8 +16,14 @@ Convomister::Application.routes.draw do
 
   resources :comments
 
+  match "/scenario/:id", :to => "b#scenario"
+  match "/scenarios", :to => "b#scenarios"
   match "/nodes/tree/:id", :to => "nodes#tree"
   match "/nodes/initial", :to => "nodes#initial"
+  match "/node/:id", :to => "b#node"
+  match "/next_nodes/:id", :to => "b#next_nodes"
+  match "/tree/:id", :to => "b#tree"
+
   resources :nodes
 
   resources :users

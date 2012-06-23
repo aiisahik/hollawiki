@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+   <title></title>
+   <link href="/assets/application.css" media="all" rel="stylesheet" type="text/css" />
+   <script src="../assets/b.js" type="text/javascript"></script>
+   <script src="/assets/application.js" type="text/javascript"></script>
+
+   <script src="/assets/underscore.js" type="text/javascript"></script>
+   <script src="/assets/backbone.js" type="text/javascript"></script>
+
+
+
+
+   <script type="text/template" id="scenarios-template">
+         <% _.each(scenarios, function(scenario) { %>
+         <li><%= scenario.name %></li>
+         <% }); %>
+   </script>
+
+
+
+   <script type="application/javascript">
+      jQuery(function() {
+         window.scenarioslist.fetch();
+      });
+
+   </script>
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+   <div class="row" id="bb_app">
+      <div class="span4">
+         <div class="well sidebar-nav">
+            <ul class="scenarios">
+
+            </ul>
+         </div>
+      </div>
+      <div class="span-center">
+         <div class="span-center-inner">
+            <div id="scenario_desc"></div>
+         </div>
+         <div id="start_node"></div>
+         <div class="span-center-inner">
+            <div id="scenario_speaker_header">
+               <table width="100%"><tr><td width="50%"><h4 id="label-speaker0"></h4></td><td width="50%" align="right"><h4 id="label-speaker1"></h4></td> </tr></table>
+            </div>
+         </div>
+
+         <div id="tree_nodes"></div>
+
+
+
+         <div id="next_nodes"></div>
+
+
+         <div id="input-node">
+            <textarea rows="3" id="node_new" class="form-node" placeholder="Suggest something to say..."></textarea>
+            <input type="radio" id="speaker_type_0" name="speaker_type" value="0" checked> You<br>
+            <input type="radio" id="speaker_type_1" name="speaker_type" value="1"> Girl<br>
+            <input type="radio" id="speaker_type_-1" name="speaker_type" value="-1"> Event<br>
+
+         </div>
+      </div>
+      <div class="span4"></div>
+   </div>
+
+   <div id="debug"></div>
+
+
+
+</div>
+
+
+
+
+</body>
+</html>
